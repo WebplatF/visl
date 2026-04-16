@@ -11,25 +11,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           channel: stable
 
-      - name: Enable Windows Desktop
+      - name: Enable Windows desktop
         run: flutter config --enable-windows-desktop
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Doctor check
+      - name: Flutter doctor
         run: flutter doctor -v
 
-      - name: Build Windows app
-        run: flutter build windows --release
+      - name: Build Windows (debug enabled)
+        run: flutter build windows --release --verbose
 
-      - name: Verify build output
-        run: dir build\windows\runner\Release
+      - name: Verify output
+        run: dir build\windows\runner
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
