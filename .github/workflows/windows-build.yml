@@ -15,6 +15,12 @@ jobs:
         with:
           channel: stable
 
+      # 🔥 IMPORTANT: install C++ toolchain (missing in your setup)
+      - name: Install Visual Studio Build Tools (C++)
+        run: |
+          choco install visualstudio2022buildtools --quiet --no-progress
+          choco install visualstudio2022-workload-vctools --quiet --no-progress
+
       - name: Enable Windows desktop
         run: flutter config --enable-windows-desktop
 
@@ -24,11 +30,19 @@ jobs:
       - name: Flutter doctor
         run: flutter doctor -v
 
-      - name: Build Windows (debug enabled)
+      # 🔥 make sure real error is visible
+      - name: Build Windows app
         run: flutter build windows --release --verbose
 
+      # 🔥 safer directory check (won’t crash workflow)
       - name: Verify output
-        run: dir build\windows\runner
+        run: |
+          if (Test-Path build/windows/runner/Release) {
+            dir build/windows/runner/Release
+          } else {
+            echo "BUILD FAILED: Release folder not found"
+            exit 1
+          }
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
