@@ -1,4 +1,3 @@
-set(CMAKE_GENERATOR "Visual Studio 17 2022")
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
 project(video_convertor LANGUAGES CXX)
