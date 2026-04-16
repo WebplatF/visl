@@ -37,8 +37,9 @@ jobs:
       # 🔥 safer directory check (won’t crash workflow)
       - name: Verify output
         run: |
-          if (Test-Path build/windows/runner/Release) {
-            dir build/windows/runner/Release
+          if (Test-Path build/windows/x64/runner/Release) {
+            echo "Build OK"
+            dir build/windows/x64/runner/Release
           } else {
             echo "BUILD FAILED: Release folder not found"
             exit 1
@@ -48,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: build/windows/runner/Release/
+          path: build/windows/x64/runner/Release/
