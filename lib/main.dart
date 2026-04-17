@@ -121,7 +121,7 @@ class _ConverterPageState extends State<ConverterPage> {
 
   // ── pick file ──────────────────────────────
   Future<void> pickVideo() async {
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['mp4'],
     );
@@ -424,7 +424,7 @@ class _TitleBar extends StatelessWidget {
           child: const Icon(Icons.videocam, color: Colors.white, size: 13),
         ),
         const SizedBox(width: 8),
-        const Text('MP4 → HLS Converter',
+        const Text('VISI Converter',
             style: TextStyle(fontSize: 12, color: _C.t4, letterSpacing: 0.4)),
       ]),
     );
