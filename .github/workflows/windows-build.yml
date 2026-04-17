@@ -1,8 +1,14 @@
 name: Flutter Windows Build
 
 on:
-  push:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+   workflow_dispatch:
+      inputs:
+        build_mode:
+          description: "Build mode (release/debug)"
+          required: true
+          default: "release"
 
 jobs:
   build:
@@ -32,7 +38,7 @@ jobs:
 
       # 🔥 make sure real error is visible
       - name: Build Windows app
-        run: flutter build windows --release --verbose
+        run: flutter build windows --${{ github.event.inputs.build_mode }}
 
       # 🔥 safer directory check (won’t crash workflow)
       - name: Verify output
