@@ -4,7 +4,7 @@ project(video_convertor LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "video_convertor")
+set(BINARY_NAME "VISI")
 
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
